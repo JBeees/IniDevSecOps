@@ -1,0 +1,22 @@
+name: CI Workflow
+
+on: [push, pull_request]  # Jalankan setiap push atau pull request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Gunakan VM Ubuntu
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4  # Ambil kode dari repo
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18  # Pakai Node.js 18
+
+      - name: Install Dependencies
+        run: npm install  # Install package (jika ada package.json)
+
+      - name: Run Tests
+        run: npm test  # Jalankan tes (jika ada)
